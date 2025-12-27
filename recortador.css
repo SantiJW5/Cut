@@ -1,21 +1,22 @@
 body {
       font-family: Arial, sans-serif;
-      margin: 24px;
+      margin: 44px;
       background: #111;
       color: #eee;
     }
 
     .wrap {
-      max-width: 980px;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
     .card {
       background: #1b1b1b;
-      border: 1px solid #2a2a2a;
+      border: 1px solid #3d3e3f;
       border-radius: 12px;
       padding: 16px;
       margin-bottom: 16px;
+      
     }
 
     .row {
@@ -23,6 +24,7 @@ body {
       gap: 12px;
       flex-wrap: wrap;
       align-items: center;
+      
     }
 
     label {
@@ -37,6 +39,7 @@ body {
       border-radius: 10px;
       padding: 10px 12px;
       outline: none;
+      
     }
 
     input[type="number"] {
@@ -63,13 +66,17 @@ body {
       opacity: 0.85;
       margin-top: 8px;
       line-height: 1.35;
+      
     }
 
     .grid {
+      height: 400px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      
     }
+    
 
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
@@ -88,11 +95,14 @@ body {
 
     .canvasWrap {
       background: #0f0f0f;
-      border: 1px dashed #2a2a2a;
+      border: 1px #2a2a2a;
       border-radius: 12px;
       padding: 12px;
       overflow: auto;
       max-height: 520px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     canvas {
