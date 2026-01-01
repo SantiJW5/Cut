@@ -6,61 +6,80 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>Recortar por píxeles</title>
   </head>
-<body class="font-sans m-10 text-white bg-gray-950">
-  <div class="max-w-300 m-auto">
-    <div class="bg-slate-900 p-10 border border-[#3d3e3f] rounded-md mb-5">
-      <h2>Recortar Rapido</h2>
-      <div class=" w-300 mt-5 ">
+<body class="font-sans m-10 text-white bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-10 border border-slate-700/60 rounded-xl mb-5 shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">Recortar Rápido</h2>
+      <div class="text-slate-300 leading-relaxed">
         1. Define <b>ancho</b> y <b>alto</b> en px y presiona <b>Guardar configuración</b>.<br>
         2. Sube una imagen.<br>
         3. Se recorta al <b>centro</b> con las dimensiones elegidas.<br>
         4. Descarga tu <b>imagen</b>.
       </div>
     </div>
-  
-    <div class="bg-slate-900 p-10 border border-[#3d3e3f] rounded-md mb-5">
-      <div class="row flex gap-5 flex-wrap items-center">
+
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-10 border border-slate-700/60 rounded-xl mb-5 shadow-lg">
+
+      <div class="flex gap-6 flex-wrap items-end">
         <div>
-          <label class="size-7" for="w">Ancho</label><br>
-          <input class="bg-slate-950 border border-[#2a2a2a] rounded p-1 outline-none w-30" id="w" type="number" min="1" value="512" />
+          <label class="text-sm text-slate-300" for="w">Ancho</label><br>
+          <input
+            class="bg-slate-950 border border-slate-700 rounded-md p-2 outline-none w-32 text-slate-200 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            id="w" type="number" min="1" value="512" />
         </div>
 
         <div>
-          <label class="size-7" for="h">Alto</label><br>
-          <input class="bg-slate-950 border border-[#2a2a2a] rounded p-1 outline-none" id="h" type="number" min="1" value="512" />
+          <label class="text-sm text-slate-300" for="h">Alto</label><br>
+          <input
+            class="bg-slate-950 border border-slate-700 rounded-md p-2 outline-none w-32 text-slate-200 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            id="h" type="number" min="1" value="512" />
         </div>
 
-        <div style="align-self:flex-end;">
-          <button class="bg-blue-600 text-white rounded p-2 cursor-pointer disabled:cursor-not-allowed opacity-60" id="saveBtn">Guardar configuración</button>
-        </div>
+        <button
+          class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-md px-5 py-2 transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          id="saveBtn">
+          Guardar configuración
+        </button>
 
-        <div class="size-4 mt-4" id="cfgStatus"></div>
+        <div class="text-sm text-slate-400" id="cfgStatus"></div>
       </div>
 
-      <div style="margin-top:14px" class="row flex gap-5 flex-wrap items-center">
-        <input class="bg-blue-600 text-white rounded p-2 cursor-pointer w-50 disabled:cursor-not-allowed opacity-60" id="file" type="file" accept="image/*" />
-        <button class="bg-blue-600 text-white rounded p-2 cursor-pointer disabled:cursor-not-allowed opacity-60" id="saveBtn" id="downloadBtn" disabled>Descargar Imagen</button>
-        <div class="status" id="imgStatus"></div>
+      <div class="mt-6 flex gap-5 flex-wrap items-center">
+        <input
+          class="file:bg-gradient-to-r file:from-blue-600 file:to-cyan-500
+                 file:text-white file:border-0 file:px-4 file:py-2
+                 file:rounded-md file:cursor-pointer
+                 text-slate-400"
+          id="file" type="file" accept="image/*" />
+
+        <button
+          class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-md px-5 py-2 transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          id="downloadBtn" disabled>
+          Descargar imagen
+        </button>
+
+        <div class="text-sm text-slate-400" id="imgStatus"></div>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2">
-      <div class="card previewBox bg-slate-900 p-10 border border-[#3d3e3f] rounded-md mb-5">
-        <h3 class="m-0 opacity-80">Imagen original (vista previa)</h3>
-        <div class="bg-slate-800 border border-[#555] rounded p-6 overflow-auto max-h-200 flex justify-center items-center">
-          <canvas class="block max-w-full h-auto bg-slate-900 rounded" id="originalCanvas"></canvas>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 border border-slate-700/60 rounded-xl shadow-lg">
+        <h3 class="mb-4 text-slate-300">Imagen original</h3>
+        <div class="bg-slate-950 border border-slate-700 rounded-lg p-6 max-h-96 overflow-auto flex justify-center items-center">
+          <canvas class="block max-w-full h-auto rounded-md bg-slate-900" id="originalCanvas"></canvas>
         </div>
       </div>
 
-      <div class="card previewBox bg-slate-900 p-10 border border-[#3d3e3f] rounded-md mb-5">
-        <h3 class="m-0 opacity-80">Resultado recortado</h3>
-        <div class="bg-slate-800 border border-[#555] rounded p-6 overflow-auto max-h-200 flex justify-center items-center">
-          <canvas class="block max-w-full h-auto bg-slate-900 rounded" id="cropCanvas"></canvas>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 border border-slate-700/60 rounded-xl shadow-lg">
+        <h3 class="mb-4 text-slate-300">Resultado recortado</h3>
+        <div class="bg-slate-950 border border-slate-700 rounded-lg p-6 max-h-96 overflow-auto flex justify-center items-center">
+          <canvas class="block max-w-full h-auto rounded-md bg-slate-900" id="cropCanvas"></canvas>
         </div>
       </div>
     </div>
+    <script src="recortador.js"></script>
   </div>
-
-  <script src="recortador.js"></script>
 </body>
+
 </html>
